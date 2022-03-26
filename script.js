@@ -133,4 +133,7 @@ const quizData = [
         d: "DOOP",
         correct: "d",
     },
-]
+];
+
+// getting elements from html
+const quiz = document.getElementById("quiz")
