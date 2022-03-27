@@ -135,7 +135,7 @@ const quizData = [
     },
 ];
 
-// getting elements from html
+// creating hook for html elements
 // const because these will not change
 const quiz = document.getElementById("quiz");
 const answerEls = document.querySelectorAll(".answer");
