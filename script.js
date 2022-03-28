@@ -213,7 +213,3 @@ submitBtn.addEventListener("click", () => {
 
     }
 })
-
-
-
-
