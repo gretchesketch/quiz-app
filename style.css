@@ -4,6 +4,24 @@
     box-sizing: border-box;
 }
 
+#timeEl {
+    font-size: 26px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 25px;
+    padding: 25px
+}
+
+#high-score {
+    font-size: 26px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px;
+    padding: 25px;
+}
+
 body {
     font-family: "Poppins", sans-serif;
     background-color: #75C57E;

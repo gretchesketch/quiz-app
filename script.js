@@ -200,12 +200,12 @@ submitBtn.addEventListener("click", () => {
 
     currentQuiz++
 
-    // if there are still questions that have not been answer then proceed to the next question
+    // if there are still questions that have not been answered then proceed to the next question
     if(currentQuiz < quizData.length) {
         loadQuiz()
     } else {
         quiz.innerHTML = `
-        <h2>You Answered correctly with ${score} /${quizData.length} questions<h2>
+        <h2>You Answered  ${score} /${quizData.length} questions correctly!<h2>
         
         <button onclick="location.reload()">reload</button>
         `
@@ -213,3 +213,7 @@ submitBtn.addEventListener("click", () => {
 
     }
 })
+
+
+
+
