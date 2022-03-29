@@ -213,16 +213,29 @@ submitBtn.addEventListener("click", () => {
         </a>
         `
     }
-
+    localStorage.setItem("mostRecentScore", score);
     }
 })
 
 
-//score screen
 
-const name = document.getElementById("name");
-const saveScorebtn = document.getElementById("saveScoreBtn");
+//score file
+//getting hooks for score.html
+const username = document.getElementById("username");
+const saveScore = document.getElementById("saveScore");
 const finalScore = document.getElementById("finalScore");
-const mostRecentScore = document.getElementById("MostRecentScore");
+const mostRecentscore =localStorage.getItem("mostRecentScore");
 
-finalScore.innerText = mostRecentScore;
+finalScore.innerText = mostRecentScore
+
+//storing name data
+username.addEventListener("keyup", () => {
+    console.log(username.value);
+    // disabling the save button unless a name has been inputed
+    saveScoreBtn.disabled = !username.value;
+})
+
+saveHighScore = (e) => {
+    e.preventDefault();
+};
+
