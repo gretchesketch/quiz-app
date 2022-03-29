@@ -1,6 +1,6 @@
 const quizData = [
     {
-        question: "What is the name of Bender and Fry's apartment building?",
+        question: "1/15: What is the name of Bender and Fry's apartment building?",
         a: "MotherBoard of Peace",
         b: "trick question",
         c: "Robot Arms",
@@ -9,7 +9,7 @@ const quizData = [
     },
 
     {
-        question: "What Race is the sworn nemisis of the Niblonians?",
+        question: "2/15: What Race is the sworn nemisis of the Niblonians?",
         a: "The Brain Spawn",
         b: "Omicronians",
         c: "Spheroids",
@@ -18,7 +18,7 @@ const quizData = [
     },
 
     {
-        question: "Who is the 'Rocker-Jockey'?",
+        question: "3/15: Who is the 'Rocker-Jockey'?",
         a: "Petunia",
         b: "trick question",
         c: "Mom",
@@ -27,7 +27,7 @@ const quizData = [
     },
 
     {
-        question: "How many Episodes are in season 6?",
+        question: "4/15: How many Episodes are in season 6?",
         a: "20",
         b: "16",
         c: "13",
@@ -36,7 +36,7 @@ const quizData = [
     },
 
     {
-        question: "What is Dr. Zoidbergs's first name?",
+        question: "5/15: What is Dr. Zoidbergs's first name?",
         a: "Philip",
         b: "John",
         c:"Larry",
@@ -45,7 +45,7 @@ const quizData = [
     },
 
     {
-        question: "Where did fry get his name?",
+        question: "6/15: Where did fry get his name?",
         a: "Family name going back all the way to 'Minute Man Philip Fry'.",
         b: "Philip Hughes",
         c: "Screw driver",
@@ -54,7 +54,7 @@ const quizData = [
     },
 
     {
-        question: "Why doesn't anyone use pine trees for X-mas trees anymore?",
+        question: "7/15: Why doesn't anyone use pine trees for X-mas trees anymore?",
         a: "They were all cut down to make toilet paper during the 50 year squirts.",
         b: "They were all cut down to grow tall leafy trees when humans where enslaved by giraffes.",
         c: "They were all scorched during an alien invasion.",
@@ -63,7 +63,7 @@ const quizData = [
     },
 
     {
-        question: "What concert did Fry wait a thousand years to see?",
+        question: "8/15: What concert did Fry wait a thousand years to see?",
         a: "Butthole Surfers",
         b: "Beck",
         c: "Beastie Boys",
@@ -72,7 +72,7 @@ const quizData = [
     },
 
     {
-        question: "What is Leela's Surname?",
+        question: "9/15: What is Leela's Surname?",
         a: "Farnsworth",
         b: "Wong",
         c: "Alcazar",
@@ -81,7 +81,7 @@ const quizData = [
     },
 
     {
-        question: "What is Fry's brother's name?",
+        question: "10/15: What is Fry's brother's name?",
         a: "Bender",
         b: "Philip",
         c: "Adlai",
@@ -90,7 +90,7 @@ const quizData = [
     },
 
     {
-        question: "What is the name of the alien news anchor?",
+        question: "11/15: What is the name of the alien news anchor?",
         a: "Melllvar",
         b: "Morbo",
         c: "Kif",
@@ -99,7 +99,7 @@ const quizData = [
     },
 
     {
-        question: "Who is the ruler of Omicron persei 8?",
+        question: "12/15: Who is the ruler of Omicron persei 8?",
         a: "Jrrr",
         b: "Lrrr",
         c: "Grrl",
@@ -108,7 +108,7 @@ const quizData = [
     },
 
     {
-        question: "Who was the first Emperor of the Moon?",
+        question: "13/15: Who was the first Emperor of the Moon?",
         a: "Richard Nixon",
         b: "Gunter",
         c: "Al Gore",
@@ -117,7 +117,7 @@ const quizData = [
     },
 
     {
-        question: "What is Bender's last name?",
+        question: "14/15: What is Bender's last name?",
         a: "Rodriguez",
         b: "Bender",
         c: "Robótica De La Madre",
@@ -126,7 +126,7 @@ const quizData = [
     },
 
     {
-        question: "Where does Zap Branigan work?",
+        question: "15/15: Where does Zap Branigan work?",
         a: "The Federation",
         b: "GOOP",
         c: "Planet Express",
@@ -204,12 +204,25 @@ submitBtn.addEventListener("click", () => {
     if(currentQuiz < quizData.length) {
         loadQuiz()
     } else {
+        // If all the questions have been answered then display the score
         quiz.innerHTML = `
         <h2>You Answered  ${score} /${quizData.length} questions correctly!<h2>
-        
-        <button onclick="location.reload()">reload</button>
+
+        <a href="score.html">
+        <button>Enter Score</button>
+        </a>
         `
     }
 
     }
 })
+
+
+//score screen
+
+const name = document.getElementById("name");
+const saveScorebtn = document.getElementById("saveScoreBtn");
+const finalScore = document.getElementById("finalScore");
+const mostRecentScore = document.getElementById("MostRecentScore");
+
+finalScore.innerText = mostRecentScore;
