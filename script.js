@@ -213,7 +213,7 @@ submitBtn.addEventListener("click", () => {
         </a>
         `
     }
-    localStorage.setItem("mostRecentScore", score);
+    localStorage.setItem("mostRecentScore", {score});
     }
 })
 
@@ -222,20 +222,32 @@ submitBtn.addEventListener("click", () => {
 //score file
 //getting hooks for score.html
 const username = document.getElementById("username");
-const saveScore = document.getElementById("saveScore");
+const saveScoreBtn = document.getElementById("saveScoreBtn");
 const finalScore = document.getElementById("finalScore");
-const mostRecentscore =localStorage.getItem("mostRecentScore");
+const mostRecentScore = localStorage.getItem("mostRecentScore");
 
-finalScore.innerText = mostRecentScore
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-//storing name data
+const MAX_HIGH_SCORES = 5;
+
+finalScore.innerText = mostRecentScore;
+
 username.addEventListener("keyup", () => {
-    console.log(username.value);
-    // disabling the save button unless a name has been inputed
-    saveScoreBtn.disabled = !username.value;
-})
+  saveScoreBtn.disabled = !username.value;
+});
 
-saveHighScore = (e) => {
-    e.preventDefault();
+saveHighScore = e => {
+  console.log("clicked the save button!");
+  e.preventDefault();
+
+  const score = {
+    score: Math.floor(Math.random() * 100),
+    name: username.value
+  };
+  highScores.push(score);
+  highScores.sort((a, b) => b.score - a.score);
+  highScores.splice(5);
+
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  window.location.assign("/");
 };
-
