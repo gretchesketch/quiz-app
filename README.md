@@ -1,6 +1,6 @@
 # quiz-app
-Gretchen Jensen
 
+Gretchen Jensen
 
 03/24/2022
 
@@ -14,8 +14,11 @@ I have all my questions and snwers stored in an array in the js file. used the d
 
 03/29/2022
 
-
+used local storage to set the score and users name to be displayed, however still have not gotten it to be displayed.
 
 Live URL: https://gretchesketch.github.io/quiz-app/
 
 GitHub URL: https://github.com/gretchesketch/quiz-app
+
+
+
