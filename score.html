@@ -7,20 +7,18 @@
         <title>Quiz Score</title>
     </head>
     <body>
-        <h1 id="finalScore">0</h1>
-        <form>
+        <h1 id="finalScore"></h1>
+        <form id="saveNameAndScoreForm">
             <input
-            type="text"
-            name="name"
-            id="username"
-            placeholder="Player's Name Here"
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Player's Name Here"
             />
             <button
-            type="submit"
-            class="btn"
-            id="saveScoreBtn"
-            onclick="saveHighScore(event)"
-            disabled
+                    type="submit"
+                    class="saveScoreBtn"
+                    id="saveScoreBtn"
             >Save</button>
             
             <a href="index.html">

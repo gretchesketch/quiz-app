@@ -24,7 +24,7 @@ const quizData = [
         c: "Mom",
         d: "The Professor",
         correct: "c",
-    },
+    }/*,
 
     {
         question: "4/15: How many Episodes are in season 6?",
@@ -132,7 +132,7 @@ const quizData = [
         c: "Planet Express",
         d: "DOOP",
         correct: "d",
-    },
+    }*/
 ];
 
 // creating hook for html elements
@@ -154,11 +154,24 @@ let currentQuiz= 0;
 //created the score that starts at 0
 let score = 0;
 
-// calling  the function loadQuiz
-loadQuiz();
+localStorage["score1"] = score
+
+if(document.body.contains(document.getElementById("counter"))) {
+    console.log("about to load quiz")
+   // calling  the function loadQuiz
+    loadQuiz();
+}
+    
+
+
+
+
+
+
 
 //decalaring the function for loadquiz/ when it is called this is what will execute.
 function loadQuiz() {
+
     //right after we load the quiz one of the choices will already be filled in this will deselect all until a user has clicked an option
     deselectAnswers()
 
@@ -189,65 +202,76 @@ function getSelected() {
     return answer
 }
 
-submitBtn.addEventListener("click", () => {
-    const answer = getSelected()
+if(document.body.contains(document.getElementById("counter"))) {
+    submitBtn.addEventListener("click", () => {
+        const answer = getSelected()
 
-    //check to see IF ANSWER is EQUAL TO the correct answer that is stated in the array(quizData)for the displayed question(currentQuiz) and look for the correct value
-    if(answer) {
-    if(answer === quizData[currentQuiz].correct) {
-        score++
-    }
+        //check to see IF ANSWER is EQUAL TO the correct answer that is stated in the array(quizData)for the displayed question(currentQuiz) and look for the correct value
+        if(answer) {
+            if(answer === quizData[currentQuiz].correct) {
+                score++
+                localStorage.setItem("mostRecentScore", score);
+                console.log("local variable score: " + score + " local storage item mostRecemtScore: " + localStorage.getItem("mostRecentScore"));
 
-    currentQuiz++
+            }
 
-    // if there are still questions that have not been answered then proceed to the next question
-    if(currentQuiz < quizData.length) {
-        loadQuiz()
-    } else {
-        // If all the questions have been answered then display the score
-        quiz.innerHTML = `
-        <h2>You Answered  ${score} /${quizData.length} questions correctly!<h2>
+            currentQuiz++
 
-        <a href="score.html">
-        <button>Enter Score</button>
-        </a>
-        `
-    }
-    localStorage.setItem("mostRecentScore", {score});
-    }
-})
+            // if there are still questions that have not been answered then proceed to the next question
+            if(currentQuiz < quizData.length) {
+                loadQuiz()
+            } else {
+                // If all the questions have been answered then display the score
+                quiz.innerHTML = `
+                <h2>You Answered  ${score}/${quizData.length} questions correctly!<h2>
+
+                <a href="score.html">
+                <button>Enter Score</button>
+                </a>
+                `
+            }
+            localStorage.setItem("mostRecentScore", score);
+        }
+    }) 
+};
+//deferentiates the pages
+if(document.body.contains(document.getElementById("finalScore"))) {
+    //this is making the local storage for the score a variable that can be called multiple times
+    let score2 = localStorage.getItem("mostRecentScore")
+    console.log(score2);
+    document.getElementById("finalScore").textContent += score2;
 
 
 
-//score file
-//getting hooks for score.html
-const username = document.getElementById("username");
-const saveScoreBtn = document.getElementById("saveScoreBtn");
-const finalScore = document.getElementById("finalScore");
-const mostRecentScore = localStorage.getItem("mostRecentScore");
 
-const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-const MAX_HIGH_SCORES = 5;
 
-finalScore.innerText = mostRecentScore;
+    //score file
+    //getting hooks for score.html
+   // const username = document.getElementById("name");
+    //const saveScore = document.getElementById("saveScore");
+   // const finalScore = document.getElementById("finalScore");
+   // const mostRecentScore =localStorage.getItem("mostRecentScore");
 
-username.addEventListener("keyup", () => {
-  saveScoreBtn.disabled = !username.value;
-});
+    //localStorage.setItem("highScores", JSON.stringify([]));
 
-saveHighScore = e => {
-  console.log("clicked the save button!");
-  e.preventDefault();
 
-  const score = {
-    score: Math.floor(Math.random() * 100),
-    name: username.value
-  };
-  highScores.push(score);
-  highScores.sort((a, b) => b.score - a.score);
-  highScores.splice(5);
+    //finalScore.innerText = mostRecentScore;
 
-  localStorage.setItem("highScores", JSON.stringify(highScores));
-  window.location.assign("/");
+    //storing name data
+    //username.addEventListener("keyup", () => {
+    //})
+
+    //
+
+
+    saveScoreBtn.addEventListener("click", e => {  
+        // e.preventDefault();
+        //variable is the forms input and the value is the user input
+        let userNameEntry = saveNameAndScoreForm.elements["name"].value;
+        let highScoreEntry = ("" + userNameEntry + ": highscore: " + score2);
+        console.log(highScoreEntry)
+        localStorage.setItem("highscore1", highScoreEntry)
+        console.log(localStorage.getItem("highscore1"))
+    });
 };
