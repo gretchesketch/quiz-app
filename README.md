@@ -21,4 +21,4 @@ Live URL: https://gretchesketch.github.io/quiz-app/
 GitHub URL: https://github.com/gretchesketch/quiz-app
 
 
-
+<img src="C:\Users\gretc\Documents\50Projects\quiz-app\images\Untitled_ Apr 5, 2022 3_57 PM.gif alt="My Project GIF" width="500" height="600">
