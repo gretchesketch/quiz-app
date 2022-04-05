@@ -234,7 +234,7 @@ if(document.body.contains(document.getElementById("counter"))) {
         }
     }) 
 };
-//deferentiates the pages
+//differentiates the pages so it won't keep trying to apply the quiz page properties to the score page
 if(document.body.contains(document.getElementById("finalScore"))) {
     //this is making the local storage for the score a variable that can be called multiple times
     let score2 = localStorage.getItem("mostRecentScore")
@@ -267,11 +267,14 @@ if(document.body.contains(document.getElementById("finalScore"))) {
 
     saveScoreBtn.addEventListener("click", e => {  
         // e.preventDefault();
-        //variable is the forms input and the value is the user input
+        //creating a variable that is the form input with the user input in it
         let userNameEntry = saveNameAndScoreForm.elements["name"].value;
+        //this is creating a variable that is displaying the users name "" and calling the previous variable stringing it with the score
         let highScoreEntry = ("" + userNameEntry + ": highscore: " + score2);
         console.log(highScoreEntry)
+        //this is using local storage to store/set the previous variable properties
         localStorage.setItem("highscore1", highScoreEntry)
+        //this is getting the data that was stored
         console.log(localStorage.getItem("highscore1"))
     });
 };
