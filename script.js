@@ -24,7 +24,7 @@ const quizData = [
         c: "Mom",
         d: "The Professor",
         correct: "c",
-    }/*,
+    },
 
     {
         question: "4/15: How many Episodes are in season 6?",
@@ -132,11 +132,24 @@ const quizData = [
         c: "Planet Express",
         d: "DOOP",
         correct: "d",
-    }*/
+    }
 ];
 
+
+
+
+
+
+
+
+
+
+
+
 // creating hook for html elements
+const highScore = document.getElementById("high-score")
 // const because these will not change
+// the value (name/ID) is in quotes and inside the parenthesis sent as an argument 
 const quiz = document.getElementById("quiz");
 const answerEls = document.querySelectorAll(".answer");
 // this gives functionality to the questions
@@ -154,8 +167,11 @@ let currentQuiz= 0;
 //created the score that starts at 0
 let score = 0;
 
+//this is keeping up with the score
 localStorage["score1"] = score
 
+//this if statemnt is using the DOM to call the body of the html document with counter in it to differentiate the different files.
+//Since counter is not used in the score.html file it will load quiz for the correct index.html file.
 if(document.body.contains(document.getElementById("counter"))) {
     console.log("about to load quiz")
    // calling  the function loadQuiz
@@ -163,6 +179,14 @@ if(document.body.contains(document.getElementById("counter"))) {
 }
     
 
+
+highScore.innerHTML=`
+<ul>
+    <li>1.  ${window.localStorage.getItem("highscore1_name")}: ${window.localStorage.getItem("highscore1")}</li>
+    <li>2.  ${window.localStorage.getItem("highscore2_name")}: ${window.localStorage.getItem("highscore2")}</li>
+    <li>3.  ${window.localStorage.getItem("highscore3_name")}: ${window.localStorage.getItem("highscore3")}</li>
+</ul>
+`
 
 
 
@@ -172,7 +196,7 @@ if(document.body.contains(document.getElementById("counter"))) {
 //decalaring the function for loadquiz/ when it is called this is what will execute.
 function loadQuiz() {
 
-    //right after we load the quiz one of the choices will already be filled in this will deselect all until a user has clicked an option
+    //right after we load the quiz, one of the choices will already be filled in. this will deselect all until a user has clicked an option
     deselectAnswers()
 
     const currentQuizData = quizData[currentQuiz];
@@ -189,10 +213,9 @@ function deselectAnswers() {
     answerEls.forEach(answerEl => answerEl.checked = false);
 }
 
-//this loops through the choices and logs the selected answer
+//this loops through the choices and logs the user's selected answer
 function getSelected() {
     let answer
-
     answerEls.forEach(answerEl => {
         if(answerEl.checked) {
             answer = answerEl.id
@@ -202,6 +225,7 @@ function getSelected() {
     return answer
 }
 
+// this gave us an error, so we embedded it in an IF statement that checks which html document is open.
 if(document.body.contains(document.getElementById("counter"))) {
     submitBtn.addEventListener("click", () => {
         const answer = getSelected()
@@ -210,8 +234,9 @@ if(document.body.contains(document.getElementById("counter"))) {
         if(answer) {
             if(answer === quizData[currentQuiz].correct) {
                 score++
+                // score is kept in local storage because this same JS is accessed again by multiple html pages (score is zeroed out at the top)
                 localStorage.setItem("mostRecentScore", score);
-                console.log("local variable score: " + score + " local storage item mostRecemtScore: " + localStorage.getItem("mostRecentScore"));
+                console.log("local variable score: " + score + " local storage item mostRecentScore: " + localStorage.getItem("mostRecentScore"));
 
             }
 
@@ -221,7 +246,7 @@ if(document.body.contains(document.getElementById("counter"))) {
             if(currentQuiz < quizData.length) {
                 loadQuiz()
             } else {
-                // If all the questions have been answered then display the score
+                // If all the questions have been answered then display the score by directly defining html
                 quiz.innerHTML = `
                 <h2>You Answered  ${score}/${quizData.length} questions correctly!<h2>
 
@@ -230,21 +255,13 @@ if(document.body.contains(document.getElementById("counter"))) {
                 </a>
                 `
             }
-            localStorage.setItem("mostRecentScore", score);
+            window.localStorage.setItem("mostRecentScore", score);
         }
     }) 
 };
+
 //differentiates the pages so it won't keep trying to apply the quiz page properties to the score page
-if(document.body.contains(document.getElementById("finalScore"))) {
     //this is making the local storage for the score a variable that can be called multiple times
-    let score2 = localStorage.getItem("mostRecentScore")
-    console.log(score2);
-    document.getElementById("finalScore").textContent += score2;
-
-
-
-
-
 
     //score file
     //getting hooks for score.html
@@ -252,29 +269,69 @@ if(document.body.contains(document.getElementById("finalScore"))) {
     //const saveScore = document.getElementById("saveScore");
    // const finalScore = document.getElementById("finalScore");
    // const mostRecentScore =localStorage.getItem("mostRecentScore");
-
     //localStorage.setItem("highScores", JSON.stringify([]));
-
-
     //finalScore.innerText = mostRecentScore;
-
     //storing name data
     //username.addEventListener("keyup", () => {
     //})
-
     //
 
-
-    saveScoreBtn.addEventListener("click", e => {  
-        // e.preventDefault();
+if(document.body.contains(document.getElementById("finalScore"))) {
+    saveScoreBtn.addEventListener("click", e => { 
+        e.preventDefault();
+        let score2 = localStorage.getItem("mostRecentScore")
+        console.log(score2);
+        document.getElementById("finalScore").textContent += score2; 
+        e.preventDefault();
         //creating a variable that is the form input with the user input in it
         let userNameEntry = saveNameAndScoreForm.elements["name"].value;
+
+        //console.log("it gets here");
+        //console.log(window.localStorage.getItem("highscore3"));
+        if(window.localStorage.getItem("highscore3") == 'null' | score2 >= window.localStorage.getItem("highscore3")) {
+            //console.log("true If 3 null | > 3")
+            if(window.localStorage.getItem("highscore2") == 'null' | score2 >= window.localStorage.getItem("highscore2")) {
+                //console.log("true If 2 null | > 2")
+                window.localStorage.setItem("highscore3", window.localStorage.getItem("highscore2"))
+                window.localStorage.setItem("highscore3_name", window.localStorage.getItem("highscore2_name"))
+                if(window.localStorage.getItem("highscore1") == 'null' | score2 >= window.localStorage.getItem("highscore1")) {
+                    //console.log("true If 1 null | > 1")
+                    window.localStorage.setItem("highscore2", window.localStorage.getItem("highscore1"))
+                    window.localStorage.setItem("highscore2_name", window.localStorage.getItem("highscore1_name"))
+                    window.localStorage.setItem("highscore1", score2)
+                    window.localStorage.setItem("highscore1_name", userNameEntry)
+                } else {
+                    //console.log("false If 1 null | < 1")
+                    window.localStorage.setItem("highscore2", score2)
+                    window.localStorage.setItem("highscore2_name", userNameEntry)
+                }
+            } else {
+            //console.log("false If 2 null | < 2")
+
+            window.localStorage.setItem("highscore3", score2)
+            window.localStorage.setItem("highscore3_name", userNameEntry)
+            }
+        }
+        //console.log("but then skips all the logic?");
+
+
+        document.location = "index.html"
+
+
+        //if(localStorage.getItem("highscore1") == null){
+          /*  localStorage.setItem("highscore1", score2)
+            localStorage.setItem("highscore1_name", userNameEntry)
+        } else {
+            if(score2 > localStorage.getItem("highscore1")) {
+
+            }
+        }*/
+
         //this is creating a variable that is displaying the users name "" and calling the previous variable stringing it with the score
-        let highScoreEntry = ("" + userNameEntry + ": highscore: " + score2);
-        console.log(highScoreEntry)
-        //this is using local storage to store/set the previous variable properties
-        localStorage.setItem("highscore1", highScoreEntry)
+        //let highScoreEntry = ("" + userNameEntry + ": highscore: " + score2);
+         //this is using local storage to store/set the previous variable properties
+        //localStorage.setItem("highscore1", highScoreEntry)
         //this is getting the data that was stored
-        console.log(localStorage.getItem("highscore1"))
+        
     });
 };
