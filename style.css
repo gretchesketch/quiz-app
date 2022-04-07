@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-#timeEl {
+#counter {
     font-size: 26px;
     position: absolute;
     top: 0;

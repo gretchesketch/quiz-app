@@ -140,12 +140,6 @@ const quizData = [
 
 
 
-
-
-
-
-
-
 // creating hook for html elements
 const highScore = document.getElementById("high-score")
 // const because these will not change
@@ -170,6 +164,8 @@ let score = 0;
 //this is keeping up with the score
 localStorage["score1"] = score
 
+
+
 //this if statemnt is using the DOM to call the body of the html document with counter in it to differentiate the different files.
 //Since counter is not used in the score.html file it will load quiz for the correct index.html file.
 if(document.body.contains(document.getElementById("counter"))) {
@@ -177,6 +173,22 @@ if(document.body.contains(document.getElementById("counter"))) {
    // calling  the function loadQuiz
     loadQuiz();
 }
+
+
+
+// count down timer
+let timer = 30;
+
+const timerCountDown = setInterval(() => {
+        document.getElementsById("counter").innerHTML = timer;
+        timer--;
+        if (timer < 0) {
+            clearInterval(timerCountDown);
+        }
+    }, 1000);
+
+
+
     
 
 
@@ -187,8 +199,6 @@ highScore.innerHTML=`
     <li>3.  ${window.localStorage.getItem("highscore3_name")}: ${window.localStorage.getItem("highscore3")}</li>
 </ul>
 `
-
-
 
 
 
@@ -225,6 +235,10 @@ function getSelected() {
     return answer
 }
 
+
+
+
+
 // this gave us an error, so we embedded it in an IF statement that checks which html document is open.
 if(document.body.contains(document.getElementById("counter"))) {
     submitBtn.addEventListener("click", () => {
@@ -259,6 +273,11 @@ if(document.body.contains(document.getElementById("counter"))) {
         }
     }) 
 };
+
+
+
+
+
 
 //differentiates the pages so it won't keep trying to apply the quiz page properties to the score page
     //this is making the local storage for the score a variable that can be called multiple times
@@ -335,3 +354,5 @@ if(document.body.contains(document.getElementById("finalScore"))) {
         
     });
 };
+
+
