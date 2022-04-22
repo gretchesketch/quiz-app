@@ -16,9 +16,30 @@ I have all my questions and snwers stored in an array in the js file. used the d
 
 used local storage to set the score and users name to be displayed, however still have not gotten it to be displayed.
 
-Live URL: https://gretchesketch.github.io/quiz-app/
-
-GitHub URL: https://github.com/gretchesketch/quiz-app
 
 
-<img src="C:\Users\gretc\Documents\50Projects\quiz-app\images\Untitled_ Apr 5, 2022 3_57 PM.gif" alt="My Project GIF" width="500" height="600"></img>
+EDITED:
+
+04/22/2022
+
+* Futurama Quiz App
+
+	* Live URL: https://gretchesketch.github.io/quiz-app/
+
+        GitHub URL: https://github.com/gretchesketch/quiz-app
+
+	* HTML, CSS, Javascript.
+
+	* A fun app that tests your knowledge of the show Futurama.
+	
+	*  Contributers:
+        -Gretchen Jensen - https://github.com/gretchesketch
+
+
+
+
+
+        ![image](images\FirstPageQuizAppScreenshot.jpg)
+
+
+        ![image](images\QuizAppScoreScreenshot.jpg)
